@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 20px;
+            background: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        h1, h2 {
+            color: #333;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+
+        input, select, textarea {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #0056b3;
+        }
+
+        button {
+            padding: 10px;
+          	margin: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #0056b3;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #003d80;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .success {
+            color: green;
+            display: none;
+        }
+
+        .flex-bar {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e9ecef;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .flex-bar a {
+            color: #007bff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .flex-bar a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="firstBoard">
+    <h1>أول خطوة للحصول على أفضل كلمة مفتاحية لمقالك/مدونتك</h1>
+    <form id="keywordForm">
+        <div class="form-group">
+            <label for="mainTopic">ما هو النيتش أو الموضوع الأساسي؟</label>
+            <input type="text" id="mainTopic" name="mainTopic" required>
+        </div>
+        <div class="form-group">
+            <label for="numKeywords">كم عدد الكلمات المفتاحية التي تود توليدها؟</label>
+            <input type="number" id="numKeywords" name="numKeywords" required>
+        </div>
+        <div class="form-group">
+            <label for="keywordType">ما هي الكلمة المفتاحية التي تود توليدها؟</label>
+            <select id="keywordType" name="keywordType" required>
+                <option value="High search volume">High search volume</option>
+                <option value="Low Competition">Low Competition</option>
+                <option value="Balanced">Balanced</option>
+            </select>
+        </div>
+        <button type="submit">توليد الكلمة المفتاحية</button>
+    </form>
+    <div id="resultBox" class="hidden">
+        <textarea id="resultText" rows="6" readonly></textarea>
+        <button id="copyButton">نسخ</button>
+        <span id="copySuccess" class="success">تم النسخ ✔</span>
+        <button id="nextButton" class="hidden">التالي</button>
+    </div>
+</div>
+
+<div class="container hidden" id="secondBoard">
+    <h2>هذه الخطوة تساعدك على عمل قائمة بأفضل العناوين الفريدة لتستخدمها لتدوينتك/مقالك</h2>
+    <form id="titleForm">
+        <div class="form-group">
+            <label for="mainKeyword">ما هي الكلمة المفتاحية التي تود أن تتصدر بها؟</label>
+            <input type="text" id="mainKeyword" name="mainKeyword" required>
+        </div>
+        <div class="form-group">
+            <label for="targetAudience">ما هو الجمهور المستهدف؟ (اختياري)</label>
+            <input type="text" id="targetAudience" name="targetAudience" placeholder="public">
+            <button type="button" id="generateAudienceButton">توليد جمهور مستهدف</button>
+        </div>
+        <div class="form-group">
+            <label for="numTitles">كم عدد العناوين التي تود توليدها؟</label>
+            <input type="number" id="numTitles" name="numTitles" required>
+        </div>
+        <div class="form-group">
+            <label for="writingStyle">ما الأسلوب الذي تود الكتابة به؟</label>
+            <select id="writingStyle" name="writingStyle" required>
+                <option value="Exited">Exited</option>
+                <option value="Professional">Professional</option>
+                <option value="Encouraging">Encouraging</option>
+                <option value="Funny">Funny</option>
+                <option value="Dramatic">Dramatic</option>
+                <option value="Witty">Witty</option>
+                <option value="Sarcastic">Sarcastic</option>
+                <option value="Engaging">Engaging</option>
+                <option value="Creative">Creative</option>
+            </select>
+        </div>
+        <button type="submit">توليد الأمر والانتقال إلى التالي</button>
+        <button type="button" id="backButton">العودة للخطوة السابقة</button>
+    </form>
+    <div id="titleResultBox" class="hidden">
+        <textarea id="titleResultText" rows="6" readonly></textarea>
+        <button id="titleCopyButton">نسخ</button>
+        <span id="titleCopySuccess" class="success">تم النسخ ✔</span>
+        <button id="nextToThirdButton" class="hidden">التالي</button>
+    </div>
+</div>
+
+<div class="container hidden" id="thirdBoard">
+    <h2>في هذه الخطوة سنقوم باقتراح عليك أوتلاين/هيكل مناسب لمقالك</h2>
+    <form id="outlineForm">
+        <div class="form-group">
+            <label for="articleTitle">ما هو عنوان المقالة/التدوينة الذي اخترته؟</label>
+            <input type="text" id="articleTitle" name="articleTitle" required>
+        </div>
+        <div class="form-group">
+            <label for="numSections">كم عدد الأقسام في كل أوتلاين؟</label>
+            <input type="number" id="numSections" name="numSections" required>
+        </div>
+        <div class="form-group">
+            <label for="numOutlines">كم عدد الأوتلاين الذي تود استخراجه؟</label>
+            <input type="number" id="numOutlines" name="numOutlines" required>
+        </div>
+        <div class="form-group">
+            <label for="outlineWritingStyle">ما الأسلوب الذي تود الكتابة به؟</label>
+            <select id="outlineWritingStyle" name="outlineWritingStyle" required>
+                <option value="Exited">Exited</option>
+                <option value="Professional">Professional</option>
+                <option value="Encouraging">Encouraging</option>
+                <option value="Funny">Funny</option>
+                <option value="Dramatic">Dramatic</option>
+                <option value="Witty">Witty</option>
+                <option value="Sarcastic">Sarcastic</option>
+                <option value="Engaging">Engaging</option>
+                <option value="Creative">Creative</option>
+            </select>
+        </div>
+        <button type="submit">توليد الأمر والانتقال إلى التالي</button>
+        <button type="button" id="backToSecondButton">العودة للخطوة السابقة</button>
+    </form>
+    <div id="outlineResultBox" class="hidden">
+        <textarea id="outlineResultText" rows="6" readonly></textarea>
+        <button id="outlineCopyButton">نسخ</button>
+        <span id="outlineCopySuccess" class="success">تم النسخ ✔</span>
+        <button id="nextToFourthButton" class="hidden">التالي</button>
+    </div>
+</div>
+
+<div class="container hidden" id="fourthBoard">
+    <h2>استخراج الأمر النهائي</h2>
+    <form id="finalForm">
+        <div class="form-group">
+            <label for="finalWritingStyle">ما الأسلوب الذي تود الكتابة به؟</label>
+            <select id="finalWritingStyle" name="finalWritingStyle" required>
+                <option value="Exited">Exited</option>
+                <option value="Professional">Professional</option>
+                <option value="Encouraging">Encouraging</option>
+                <option value="Funny">Funny</option>
+                <option value="Dramatic">Dramatic</option>
+                <option value="Witty">Witty</option>
+                <option value="Sarcastic">Sarcastic</option>
+                <option value="Engaging">Engaging</option>
+                <option value="Creative">Creative</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="callToAction">ما هو الـCall-to-action؟ (اختياري)</label>
+            <input type="text" id="callToAction" name="callToAction" placeholder="اترك تعليقاً محفزاً">
+        </div>
+        <div class="form-group">
+            <label for="numWordsPerSection">كم عدد الكلمات التي ترغبها في كل سيكشن؟</label>
+            <input type="number" id="numWordsPerSection" name="numWordsPerSection" placeholder="500">
+        </div>
+        <div id="sectionsContainer">
+            <!-- Sections will be dynamically added here based on the previous inputs -->
+        </div>
+        <button type="submit">إظهار الأمر النهائي</button>
+        <button type="button" id="backToThirdButton">العودة للخطوة السابقة</button>
+    </form>
+    <div id="finalResultBox" class="hidden">
+        <textarea id="finalResultText" rows="6" readonly></textarea>
+        <button id="finalCopyButton">نسخ</button>
+        <span id="finalCopySuccess" class="success">تم النسخ ✔</span>
+    </div>
+</div>
+
+<div class="flex-bar">
+        <a href="https://chatgpt.com/" target="_blank">ChatGPT</a>
+</div>
+
+<script>
+    // JavaScript to handle form submissions and transitions
+    let mainTopic, mainKeyword, articleTitle;
+
+    document.getElementById('keywordForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        mainTopic = document.getElementById('mainTopic').value.trim();
+        let numKeywords = document.getElementById('numKeywords').value.trim();
+        let keywordType = document.getElementById('keywordType').value.trim();
+
+        let result = `Conduct keyword research for the topic or niche "${mainTopic}" and generate a list of ${numKeywords} relevant keywords. Focus on finding "${keywordType}" keywords that will help improve the website's visibility, drive traffic, and optimize the content for search engines. The keywords should be closely related to the main topic and provide opportunities for creating valuable and engaging content that resonates with the target audience. Also provide estimated monthly search volume, cost per click, ad competition, and organic search competition nicely formatted inside a table.`;
+        document.getElementById('resultText').value = result;
+        document.getElementById('resultBox').classList.remove('hidden');
+    });
+
+    document.getElementById('copyButton').addEventListener('click', function() {
+        let resultText = document.getElementById('resultText');
+        resultText.select();
+        document.execCommand('copy');
+        document.getElementById('copySuccess').style.display = 'inline';
+        setTimeout(function() {
+            document.getElementById('copySuccess').style.display = 'none';
+        }, 2000);
+        document.getElementById('nextButton').classList.remove('hidden');
+    });
+
+    document.getElementById('nextButton').addEventListener('click', function() {
+        document.getElementById('firstBoard').classList.add('hidden');
+        document.getElementById('secondBoard').classList.remove('hidden');
+    });
+	document.getElementById('generateAudienceButton').addEventListener('click', function() {
+            let audienceText = `For the niche topic: "${mainTopic}", identify and describe three potential target audiences that might be interested in this subject matter. Explain their motivations, demographics, and unique characteristics that make them an ideal audience for this topic.`;
+            alert(audienceText);
+            document.getElementById('targetAudience').value = audienceText;
+        });
+    document.getElementById('titleForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        mainKeyword = document.getElementById('mainKeyword').value.trim();
+        let targetAudience = document.getElementById('targetAudience').value.trim() || 'public';
+        let numTitles = document.getElementById('numTitles').value.trim();
+        let writingStyle = document.getElementById('writingStyle').value.trim();
+
+        let result = `Generate a list of ${numTitles} creative and captivating blog/article titles related to the main topic of "${mainTopic}" and adopt a ${writingStyle} tone of voice. Make sure to incorporate the keywords ("${mainKeyword}") throughout the titles, ensuring they are optimized for search engines. Make sure the titles are engaging, thought-provoking, and tailored to attract the target audience's interest. Each title should reflect a unique aspect or perspective of the main topic, offering diverse content ideas for readers to explore. Make them an ideal audience for this topic. "${targetAudience}`;
+        document.getElementById('titleResultText').value = result;
+        document.getElementById('titleResultBox').classList.remove('hidden');
+    });
+
+    document.getElementById('titleCopyButton').addEventListener('click', function() {
+        let resultText = document.getElementById('titleResultText');
+        resultText.select();
+        document.execCommand('copy');
+        document.getElementById('titleCopySuccess').style.display = 'inline';
+        setTimeout(function() {
+            document.getElementById('titleCopySuccess').style.display = 'none';
+        }, 2000);
+        document.getElementById('nextToThirdButton').classList.remove('hidden');
+    });
+
+    document.getElementById('nextToThirdButton').addEventListener('click', function() {
+        document.getElementById('secondBoard').classList.add('hidden');
+        document.getElementById('thirdBoard').classList.remove('hidden');
+    });
+
+    document.getElementById('outlineForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        articleTitle = document.getElementById('articleTitle').value.trim();
+        let numSections = document.getElementById('numSections').value.trim();
+        let numOutlines = document.getElementById('numOutlines').value.trim();
+        let outlineWritingStyle = document.getElementById('outlineWritingStyle').value.trim();
+
+        let result = `Please provide ${numOutlines} outlines for a blog/article on the topic of "${mainTopic}", with the title "${articleTitle}" and adopt a ${outlineWritingStyle} tone of voice. Each outline should have ${numSections} section headlines only, and should incorporate the keywords ("${mainKeyword}") throughout the sub-headlines. Please do not include any bullet points or additional content in each section. Again, do not provide any bullet points, I only want the section headlines. Also, do not include "Introduction" or "Conclusion" as section headlines.`;
+        document.getElementById('outlineResultText').value = result;
+        document.getElementById('outlineResultBox').classList.remove('hidden');
+    });
+
+    document.getElementById('outlineCopyButton').addEventListener('click', function() {
+        let resultText = document.getElementById('outlineResultText');
+        resultText.select();
+        document.execCommand('copy');
+        document.getElementById('outlineCopySuccess').style.display = 'inline';
+        setTimeout(function() {
+            document.getElementById('outlineCopySuccess').style.display = 'none';
+        }, 2000);
+        document.getElementById('nextToFourthButton').classList.remove('hidden');
+    });
+
+    document.getElementById('nextToFourthButton').addEventListener('click', function() {
+        document.getElementById('thirdBoard').classList.add('hidden');
+        document.getElementById('fourthBoard').classList.remove('hidden');
+
+        let numSections = document.getElementById('numSections').value.trim();
+        let sectionsContainer = document.getElementById('sectionsContainer');
+        sectionsContainer.innerHTML = '';
+
+        for (let i = 1; i <= numSections; i++) {
+            let sectionDiv = document.createElement('div');
+            sectionDiv.classList.add('form-group');
+            sectionDiv.innerHTML = `
+                <label for="section${i}">ما الذي ستتحدث فيه في القسم ${i}؟</label>
+                <input type="text" id="section${i}" name="sections[]" required>
+            `;
+            sectionsContainer.appendChild(sectionDiv);
+        }
+    });
+
+    document.getElementById('finalForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        let finalWritingStyle = document.getElementById('finalWritingStyle').value.trim();
+        let callToAction = document.getElementById('callToAction').value.trim();
+        let numWordsPerSection = document.getElementById('numWordsPerSection').value.trim() || '500';
+        let sections = Array.from(document.querySelectorAll('[name="sections[]"]')).map(input => input.value.trim());
+
+        let sectionsText = sections.join(',');
+        let callToActionText = callToAction ? `Also, include the call-to-action near the end of the article: ${callToAction}` : '';
+
+        let result = `Create a full detailed blog/article on the topic of "${mainTopic}" with the following title: "${articleTitle}". Organize the content into the following sections(${sectionsText}). Make sure each section contains over ${numWordsPerSection} words. Include a detailed introduction at the beginning and a conclusion at the end. Adopt a ${finalWritingStyle} tone of voice and incorporate the keywords ("${mainKeyword}") throughout the content, ensuring the final piece is optimized for search engines. Each section should cover a different aspect of the main topic and be designed to guide the content creation process, resulting in a well-organized, informative, and engaging article for the readers. ${callToActionText}`;
+        document.getElementById('finalResultText').value = result;
+        document.getElementById('finalResultBox').classList.remove('hidden');
+    });
+
+    document.getElementById('finalCopyButton').addEventListener('click', function() {
+        let resultText = document.getElementById('finalResultText');
+        resultText.select();
+        document.execCommand('copy');
+        document.getElementById('finalCopySuccess').style.display = 'inline';
+        setTimeout(function() {
+            document.getElementById('finalCopySuccess').style.display = 'none';
+        }, 2000);
+    });
+
+    document.getElementById('backButton').addEventListener('click', function() {
+        document.getElementById('secondBoard').classList.add('hidden');
+        document.getElementById('firstBoard').classList.remove('hidden');
+    });
+
+    document.getElementById('backToSecondButton').addEventListener('click', function() {
+        document.getElementById('thirdBoard').classList.add('hidden');
+        document.getElementById('secondBoard').classList.remove('hidden');
+    });
+
+    document.getElementById('backToThirdButton').addEventListener('click', function() {
+        document.getElementById('fourthBoard').classList.add('hidden');
+        document.getElementById('thirdBoard').classList.remove('hidden');
+    });
+
+</script>
+
+</body>
+</html>
